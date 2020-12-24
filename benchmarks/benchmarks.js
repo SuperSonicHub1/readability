@@ -1,8 +1,7 @@
 var getTestPages = require("../test/utils").getTestPages;
 
-var { Readability, isProbablyReaderable } = require("../index");
+var { Readability, isProbablyReaderable, JSDOMParser } = require("../index");
 var JSDOM = require("jsdom").JSDOM;
-var JSDOMParser = require("../src/JSDOMParser");
 
 var referenceTestPages = [
   "002",
