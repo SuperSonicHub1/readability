@@ -45,9 +45,7 @@ function isProbablyReaderable(doc, options = {}) {
   const brNodes = doc.querySelectorAll("div > br");
   if (brNodes.length) {
     let set = new Set(nodes);
-    [].forEach.call(brNodes, function (node) {
-      set.add(node.parentNode);
-    });
+    [].forEach.call(brNodes, (node) => set.add(node.parentNode));
     nodes = Array.from(set);
   }
 
