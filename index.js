@@ -1,5 +1,5 @@
-var Readability = require("./Readability");
-var isProbablyReaderable = require("./Readability-readerable");
+var Readability = require("./src/Readability");
+var isProbablyReaderable = require("./src/Readability-readerable");
 
 module.exports = {
   Readability: Readability,
