@@ -39,11 +39,6 @@ function isNodeVisible(node) {
  * @return {boolean} Whether or not we suspect Readability.parse() will suceeed at returning an article object.
  */
 function isProbablyReaderable(doc, options = {}) {
-  // For backward compatibility reasons 'options' can either be a configuration object or the function used
-  // to determine if a node is visible.
-  if (typeof options == "function") {
-    options = { visibilityChecker: options };
-  }
 
   var defaultOptions = { minScore: 20, minContentLength: 140, visibilityChecker: isNodeVisible };
   options = Object.assign(defaultOptions, options);
