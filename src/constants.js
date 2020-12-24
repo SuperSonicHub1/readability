@@ -17,7 +17,17 @@ module.exports = {
   DEFAULT_N_TOP_CANDIDATES: 5,
 
   // Element tags to score by default.
-  DEFAULT_TAGS_TO_SCORE: "section,h2,h3,h4,h5,h6,p,td,pre".toUpperCase().split(","),
+  DEFAULT_TAGS_TO_SCORE: [
+    "SECTION",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "P",
+    "TD",
+    "PRE"
+  ],
 
   // The default number of chars an article must have in order to return a result
   DEFAULT_CHAR_THRESHOLD: 500,
