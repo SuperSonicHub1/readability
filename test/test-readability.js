@@ -5,7 +5,7 @@ chai.config.includeStack = true;
 var expect = chai.expect;
 
 var Readability = require("../index").Readability;
-var JSDOMParser = require("../JSDOMParser");
+var JSDOMParser = require("../src/JSDOMParser");
 var prettyPrint = require("./utils").prettyPrint;
 
 var testPages = require("./utils").getTestPages();
