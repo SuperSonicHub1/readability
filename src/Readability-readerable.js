@@ -33,7 +33,7 @@ function isProbablyReaderable(doc, options = {}) {
 
   options = Object.assign(READERABLE_DEFAULT_OPTIONS, options);
 
-  var nodes = doc.querySelectorAll("p, pre");
+  let nodes = doc.querySelectorAll("p, pre");
 
   // Get <div> nodes which have <br> node(s) and append them into the `nodes` variable.
   // Some articles' DOM structures might look like
@@ -42,16 +42,16 @@ function isProbablyReaderable(doc, options = {}) {
   //   <br>
   //   Sentences<br>
   // </div>
-  var brNodes = doc.querySelectorAll("div > br");
+  const brNodes = doc.querySelectorAll("div > br");
   if (brNodes.length) {
-    var set = new Set(nodes);
+    let set = new Set(nodes);
     [].forEach.call(brNodes, function (node) {
       set.add(node.parentNode);
     });
     nodes = Array.from(set);
   }
 
-  var score = 0;
+  let score = 0;
   // This is a little cheeky, we use the accumulator 'score' to decide what to return from
   // this callback:
   return [].some.call(nodes, function (node) {
@@ -69,7 +69,7 @@ function isProbablyReaderable(doc, options = {}) {
       return false;
     }
 
-    var textContentLength = node.textContent.trim().length;
+    const textContentLength = node.textContent.trim().length;
     if (textContentLength < options.minContentLength) {
       return false;
     }
