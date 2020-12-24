@@ -179,8 +179,8 @@ Readability.prototype = {
   /**
    * Run any post-process modifications to article content as necessary.
    *
-   * @param Element
-   * @return void
+   * @param {Element} articleContent
+   * @return {void}
   **/
   _postProcessContent: function(articleContent) {
     // Readability cannot open relative uris so we convert them to absolute uris.
@@ -200,9 +200,9 @@ Readability.prototype = {
    *
    * If function is not passed, removes all the nodes in node list.
    *
-   * @param NodeList nodeList The nodes to operate on
-   * @param Function filterFn the function to use as a filter
-   * @return void
+   * @param {NodeList} nodeList The nodes to operate on
+   * @param {Function} filterFn the function to use as a filter
+   * @return {void}
    */
   _removeNodes: function(nodeList, filterFn) {
     // Avoid ever operating on live node lists.
@@ -223,9 +223,9 @@ Readability.prototype = {
   /**
    * Iterates over a NodeList, and calls _setNodeTag for each node.
    *
-   * @param NodeList nodeList The nodes to operate on
-   * @param String newTagName the new tag name to use
-   * @return void
+   * @param {NodeList} nodeList The nodes to operate on
+   * @param {String} newTagName the new tag name to use
+   * @return {void}
    */
   _replaceNodeTags: function(nodeList, newTagName) {
     // Avoid ever operating on live node lists.
@@ -244,9 +244,9 @@ Readability.prototype = {
    * For convenience, the current object context is applied to the provided
    * iterate function.
    *
-   * @param  NodeList nodeList The NodeList.
-   * @param  Function fn       The iterate function.
-   * @return void
+   * @param  {NodeList} nodeList The NodeList.
+   * @param  {Function} fn       The iterate function.
+   * @return {void}
    */
   _forEachNode: function(nodeList, fn) {
     Array.prototype.forEach.call(nodeList, fn, this);
@@ -259,9 +259,9 @@ Readability.prototype = {
    * For convenience, the current object context is applied to the provided
    * test function.
    *
-   * @param  NodeList nodeList The NodeList.
-   * @param  Function fn       The test function.
-   * @return void
+   * @param  {NodeList} nodeList The NodeList.
+   * @param  {Function} fn       The test function.
+   * @return {void}
    */
   _findNode: function(nodeList, fn) {
     return Array.prototype.find.call(nodeList, fn, this);
@@ -274,9 +274,9 @@ Readability.prototype = {
    * For convenience, the current object context is applied to the
    * provided iterate function.
    *
-   * @param  NodeList nodeList The NodeList.
-   * @param  Function fn       The iterate function.
-   * @return Boolean
+   * @param  {NodeList} nodeList The NodeList.
+   * @param  {Function} fn       The iterate function.
+   * @return {Boolean}
    */
   _someNode: function(nodeList, fn) {
     return Array.prototype.some.call(nodeList, fn, this);
@@ -289,9 +289,9 @@ Readability.prototype = {
    * For convenience, the current object context is applied to the
    * provided iterate function.
    *
-   * @param  NodeList nodeList The NodeList.
-   * @param  Function fn       The iterate function.
-   * @return Boolean
+   * @param  {NodeList} nodeList The NodeList.
+   * @param  {Function} fn       The iterate function.
+   * @return {Boolean}
    */
   _everyNode: function(nodeList, fn) {
     return Array.prototype.every.call(nodeList, fn, this);
@@ -300,8 +300,8 @@ Readability.prototype = {
   /**
    * Concat all nodelists passed as arguments.
    *
-   * @return ...NodeList
-   * @return Array
+   * @return {...NodeList}
+   * @return {Array}
    */
   _concatNodeLists: function() {
     var slice = Array.prototype.slice;
@@ -327,8 +327,8 @@ Readability.prototype = {
    * subtree, except those that match CLASSES_TO_PRESERVE and
    * the classesToPreserve array from the options object.
    *
-   * @param Element
-   * @return void
+   * @param {Element} node
+   * @return {void}
    */
   _cleanClasses: function(node) {
     var classesToPreserve = this._classesToPreserve;
@@ -354,8 +354,8 @@ Readability.prototype = {
    * Converts each <a> and <img> uri in the given element to an absolute URI,
    * ignoring #ref URIs.
    *
-   * @param Element
-   * @return void
+   * @param {Element} articleContent
+   * @return {void}
    */
   _fixRelativeUris: function(articleContent) {
     var baseURI = this._doc.baseURI;
@@ -453,7 +453,7 @@ Readability.prototype = {
   /**
    * Get the article title as an H1.
    *
-   * @return string
+   * @return {string}
    **/
   _getArticleTitle: function() {
     var doc = this._doc;
@@ -533,7 +533,7 @@ Readability.prototype = {
    * Prepare the HTML document for readability to scrape it.
    * This includes things like stripping javascript, CSS, and handling terrible markup.
    *
-   * @return void
+   * @return {void}
    **/
   _prepDocument: function() {
     var doc = this._doc;
@@ -658,8 +658,8 @@ Readability.prototype = {
    * Prepare the article node for display. Clean out any inline styles,
    * iframes, forms, strip extraneous <p> tags, etc.
    *
-   * @param Element
-   * @return void
+   * @param {Element} articleContent
+   * @return {void}
    **/
   _prepArticle: function(articleContent) {
     this._cleanStyles(articleContent);
@@ -743,8 +743,8 @@ Readability.prototype = {
    * Initialize a node with the readability object. Also checks the
    * className/id for special names to add to its score.
    *
-   * @param Element
-   * @return void
+   * @param {Element} node
+   * @return {void}
   **/
   _initializeNode: function(node) {
     node.readability = {"contentScore": 0};
@@ -866,7 +866,7 @@ Readability.prototype = {
    *         most likely to be the stuff a user wants to read. Then return it wrapped up in a div.
    *
    * @param page a document to run upon. Needs to be a full document, complete with body.
-   * @return Element
+   * @return {Element}
   **/
   _grabArticle: function (page) {
     this.log("**** grabArticle ****");
@@ -1330,8 +1330,8 @@ Readability.prototype = {
   /**
    * Converts some of the common HTML entities in string to their corresponding characters.
    *
-   * @param str {string} - a string to unescape.
-   * @return string without HTML entity.
+   * @param {string} str - a string to unescape.
+   * @return {string} string without HTML entity.
    */
   _unescapeHtmlEntities: function(str) {
     if (!str) {
@@ -1350,7 +1350,7 @@ Readability.prototype = {
   /**
    * Try to extract metadata from JSON-LD object.
    * For now, only Schema.org objects of type Article or its subtypes are supported.
-   * @return Object with any metadata that could be extracted (possibly none)
+   * @return {Object} Object with any metadata that could be extracted (possibly none)
    */
   _getJSONLD: function (doc) {
     var scripts = this._getAllNodesWithTag(doc, ["script"]);
@@ -1429,7 +1429,7 @@ Readability.prototype = {
    * @param {Object} jsonld — object containing any metadata that
    * could be extracted from JSON-LD object.
    *
-   * @return Object with optional "excerpt" and "byline" properties
+   * @return {Object} Object with optional "excerpt" and "byline" properties
    */
   _getArticleMetadata: function(jsonld) {
     var metadata = {};
@@ -1522,7 +1522,7 @@ Readability.prototype = {
    * Check if node is image, or if node contains exactly only one image
    * whether as a direct child or as its descendants.
    *
-   * @param Element
+   * @param {Element} node
   **/
   _isSingleImage: function(node) {
     if (node.tagName === "IMG") {
@@ -1542,7 +1542,7 @@ Readability.prototype = {
    * and remove the <noscript> tag. This improves the quality of the images we use on
    * some sites (e.g. Medium).
    *
-   * @param Element
+   * @param {Element} doc
   **/
   _unwrapNoscriptImages: function(doc) {
     // Find img without source or attributes that might contains image, and remove it.
@@ -1616,7 +1616,7 @@ Readability.prototype = {
   /**
    * Removes script tags from the document.
    *
-   * @param Element
+   * @param {Element} doc
   **/
   _removeScripts: function(doc) {
     this._removeNodes(this._getAllNodesWithTag(doc, ["script"]), function(scriptNode) {
@@ -1632,8 +1632,9 @@ Readability.prototype = {
    * Returns false if the DIV node contains non-empty text nodes
    * or if it contains no element with given tag or more than 1 element.
    *
-   * @param Element
-   * @param string tag of child element
+   * @param {Element} element
+   * @param {string} tag - tag of child element
+   * @returns {boolean}
   **/
   _hasSingleTagInsideElement: function(element, tag) {
     // There should be exactly 1 element child with given tag
@@ -1648,6 +1649,9 @@ Readability.prototype = {
     });
   },
 
+  /**
+   * @returns {boolean}
+   */
   _isElementWithoutContent: function(node) {
     return node.nodeType === this.ELEMENT_NODE &&
       node.textContent.trim().length == 0 &&
@@ -1658,7 +1662,7 @@ Readability.prototype = {
   /**
    * Determine whether element has any children block level elements.
    *
-   * @param Element
+   * @param {Element} element
    */
   _hasChildBlockElement: function (element) {
     return this._someNode(element.childNodes, function(node) {
@@ -1686,8 +1690,8 @@ Readability.prototype = {
    * Get the inner text of a node - cross browser compatibly.
    * This also strips out any excess whitespace to be found.
    *
-   * @param Element
-   * @param Boolean normalizeSpaces (default: true)
+   * @param {Element} e
+   * @param {Boolean} [normalizeSpaces=true]
    * @return string
   **/
   _getInnerText: function(e, normalizeSpaces) {
@@ -1703,9 +1707,9 @@ Readability.prototype = {
   /**
    * Get the number of times a string s appears in the node e.
    *
-   * @param Element
-   * @param string - what to split on. Default is ","
-   * @return number (integer)
+   * @param {Element} e
+   * @param {string} s - what to split on. Default is ","
+   * @return {number} (integer)
   **/
   _getCharCount: function(e, s) {
     s = s || ",";
@@ -1716,8 +1720,8 @@ Readability.prototype = {
    * Remove the style attribute on every e and under.
    * TODO: Test if getElementsByTagName(*) is faster.
    *
-   * @param Element
-   * @return void
+   * @param {Element} e
+   * @return {void}
   **/
   _cleanStyles: function(e) {
     if (!e || e.tagName.toLowerCase() === "svg")
@@ -1744,8 +1748,8 @@ Readability.prototype = {
    * Get the density of links as a percentage of the content
    * This is the amount of text that is inside a link divided by the total text in the node.
    *
-   * @param Element
-   * @return number (float)
+   * @param {Element} element
+   * @return {number} (float)
   **/
   _getLinkDensity: function(element) {
     var textLength = this._getInnerText(element).length;
@@ -1768,8 +1772,8 @@ Readability.prototype = {
    * Get an elements class/id weight. Uses regular expressions to tell if this
    * element looks good or bad.
    *
-   * @param Element
-   * @return number (Integer)
+   * @param {Element} e
+   * @return {number} (Integer)
   **/
   _getClassWeight: function(e) {
     if (!this._flagIsActive(this.FLAG_WEIGHT_CLASSES))
@@ -1802,9 +1806,9 @@ Readability.prototype = {
    * Clean a node of all elements of type "tag".
    * (Unless it's a youtube/vimeo video. People love movies.)
    *
-   * @param Element
-   * @param string tag to clean
-   * @return void
+   * @param {Element} e
+   * @param {string} tag - tag to clean
+   * @return {void}
    **/
   _clean: function(e, tag) {
     var isEmbed = ["object", "embed", "iframe"].indexOf(tag) !== -1;
@@ -1832,11 +1836,11 @@ Readability.prototype = {
   /**
    * Check if a given node has one of its ancestor tag name matching the
    * provided one.
-   * @param  HTMLElement node
-   * @param  String      tagName
-   * @param  Number      maxDepth
-   * @param  Function    filterFn a filter to invoke to determine whether this node 'counts'
-   * @return Boolean
+   * @param  {HTMLElement} node
+   * @param  {String}      tagName
+   * @param  {Number}      maxDepth
+   * @param  {Function}    filterFn a filter to invoke to determine whether this node 'counts'
+   * @return {Boolean}
    */
   _hasAncestorTag: function(node, tagName, maxDepth, filterFn) {
     maxDepth = maxDepth || 3;
@@ -2025,7 +2029,7 @@ Readability.prototype = {
    * Clean an element of all tags of type "tag" if they look fishy.
    * "Fishy" is an algorithm based on content length, classnames, link density, number of images & embeds, etc.
    *
-   * @return void
+   * @return {void}
    **/
   _cleanConditionally: function(e, tag) {
     if (!this._flagIsActive(this.FLAG_CLEAN_CONDITIONALLY))
@@ -2122,9 +2126,9 @@ Readability.prototype = {
   /**
    * Clean out elements that match the specified conditions
    *
-   * @param Element
-   * @param Function determines whether a node should be removed
-   * @return void
+   * @param {Element} e
+   * @param {Function} filter - determines whether a node should be removed
+   * @return {void}
    **/
   _cleanMatchedNodes: function(e, filter) {
     var endOfSearchMarkerNode = this._getNextNode(e, true);
@@ -2141,8 +2145,8 @@ Readability.prototype = {
   /**
    * Clean out spurious headers from an Element.
    *
-   * @param Element
-   * @return void
+   * @param {Element} e
+   * @return {void}
   **/
   _cleanHeaders: function(e) {
     let headingNodes = this._getAllNodesWithTag(e, ["h1", "h2"]);
@@ -2159,8 +2163,8 @@ Readability.prototype = {
    * Check if this node is an H1 or H2 element whose content is mostly
    * the same as the article title.
    *
-   * @param Element  the node to check.
-   * @return boolean indicating whether this is a title-like header.
+   * @param {Element} node -  the node to check.
+   * @return {boolean} indicating whether this is a title-like header.
    */
   _headerDuplicatesTitle: function(node) {
     if (node.tagName != "H1" && node.tagName != "H2") {
@@ -2197,7 +2201,7 @@ Readability.prototype = {
    *  4. Replace the current DOM tree with the new one.
    *  5. Read peacefully.
    *
-   * @return void
+   * @return {void}
    **/
   parse: function () {
     // Avoid parsing too large documents, as per configuration option
