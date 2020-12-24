@@ -19,20 +19,19 @@
  * available at: http://code.google.com/p/arc90labs-readability
  */
 
-const { REGEXPS, IS_NODE_VISIBLE } = require("./constants");
+const { REGEXPS, READERABLE_DEFAULT_OPTIONS } = require("./constants");
 
 /**
  * Decides whether or not the document is reader-able without parsing the whole thing.
  * @param {Object} options Configuration object.
  * @param {number} [options.minContentLength=140] The minimum node content length used to decide if the document is readerable.
  * @param {number} [options.minScore=20] The minumum cumulated 'score' used to determine if the document is readerable.
- * @param {Function} [options.visibilityChecker=IS_NODE_VISIBLE] The function used to determine if a node is visible.
+ * @param {Function} [options.visibilityChecker=READERABLE_DEFAULT_OPTIONS.visibilityChecker] The function used to determine if a node is visible.
  * @return {boolean} Whether or not we suspect Readability.parse() will suceeed at returning an article object.
  */
 function isProbablyReaderable(doc, options = {}) {
 
-  var defaultOptions = { minScore: 20, minContentLength: 140, visibilityChecker: IS_NODE_VISIBLE };
-  options = Object.assign(defaultOptions, options);
+  options = Object.assign(READERABLE_DEFAULT_OPTIONS, options);
 
   var nodes = doc.querySelectorAll("p, pre");
 
