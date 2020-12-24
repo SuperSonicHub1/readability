@@ -19,28 +19,19 @@
  * available at: http://code.google.com/p/arc90labs-readability
  */
 
-const { REGEXPS } = require("./constants");
-
-/** @returns {boolean} */
-function isNodeVisible(node) {
-  // Have to null-check node.style and node.className.indexOf to deal with SVG and MathML nodes.
-  return (!node.style || node.style.display != "none")
-    && !node.hasAttribute("hidden")
-    //check for "fallback-image" so that wikimedia math images are displayed
-    && (!node.hasAttribute("aria-hidden") || node.getAttribute("aria-hidden") != "true" || (node.className && node.className.indexOf && node.className.indexOf("fallback-image") !== -1));
-}
+const { REGEXPS, IS_NODE_VISIBLE } = require("./constants");
 
 /**
  * Decides whether or not the document is reader-able without parsing the whole thing.
  * @param {Object} options Configuration object.
  * @param {number} [options.minContentLength=140] The minimum node content length used to decide if the document is readerable.
  * @param {number} [options.minScore=20] The minumum cumulated 'score' used to determine if the document is readerable.
- * @param {Function} [options.visibilityChecker=isNodeVisible] The function used to determine if a node is visible.
+ * @param {Function} [options.visibilityChecker=IS_NODE_VISIBLE] The function used to determine if a node is visible.
  * @return {boolean} Whether or not we suspect Readability.parse() will suceeed at returning an article object.
  */
 function isProbablyReaderable(doc, options = {}) {
 
-  var defaultOptions = { minScore: 20, minContentLength: 140, visibilityChecker: isNodeVisible };
+  var defaultOptions = { minScore: 20, minContentLength: 140, visibilityChecker: IS_NODE_VISIBLE };
   options = Object.assign(defaultOptions, options);
 
   var nodes = doc.querySelectorAll("p, pre");

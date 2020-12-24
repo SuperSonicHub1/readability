@@ -80,4 +80,6 @@ module.exports = {
     "quot": '"',
     "apos": "'",
   },
+  /** @returns {boolean} */
+  IS_NODE_VISIBLE: (node) => (!node.style || node.style.display != "none") && !node.hasAttribute("hidden") && (!node.hasAttribute("aria-hidden") || node.getAttribute("aria-hidden") != "true" || (node.className && node.className.indexOf && node.className.indexOf("fallback-image") !== -1))
 };
