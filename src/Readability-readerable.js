@@ -21,6 +21,7 @@
 
 const { REGEXPS } = require("./constants");
 
+/** @returns {boolean} */
 function isNodeVisible(node) {
   // Have to null-check node.style and node.className.indexOf to deal with SVG and MathML nodes.
   return (!node.style || node.style.display != "none")
