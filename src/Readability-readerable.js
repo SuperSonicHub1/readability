@@ -23,6 +23,7 @@ const { REGEXPS, READERABLE_DEFAULT_OPTIONS } = require("./constants");
 
 /**
  * Decides whether or not the document is reader-able without parsing the whole thing.
+ * @param {Document} doc
  * @param {Object} options Configuration object.
  * @param {number} [options.minContentLength=140] The minimum node content length used to decide if the document is readerable.
  * @param {number} [options.minScore=20] The minumum cumulated 'score' used to determine if the document is readerable.
